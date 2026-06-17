@@ -2,14 +2,14 @@
 const path = require('node:path');
 require(path.join(__dirname, '../../test/helpers/register-ts'));
 
-const Writer = require('../../src/Coder/Writer').default;
-const { Entity } = require('../../src/Native/Entity');
-const EntityManager = require('../../src/Native/Manager').default;
-const ObjectEntity = require('../../src/Entity/Object').default;
-const { CameraEntity } = require('../../src/Native/Camera');
-const { NameGroup, ScoreGroup, HealthGroup, BarrelGroup } = require('../../src/Native/FieldGroups');
-const { compileCreation, compileUpdate } = require('../../src/Native/UpcreateCompiler');
-const { CameraFlags, Color, PhysicsFlags, PositionFlags } = require('../../src/Const/Enums');
+const Writer = require('../../ts-server/Coder/Writer').default;
+const { Entity } = require('../../ts-server/Native/Entity');
+const EntityManager = require('../../ts-server/Native/Manager').default;
+const ObjectEntity = require('../../ts-server/Entity/Object').default;
+const { CameraEntity } = require('../../ts-server/Native/Camera');
+const { NameGroup, ScoreGroup, HealthGroup, BarrelGroup } = require('../../ts-server/Native/FieldGroups');
+const { compileCreation, compileUpdate } = require('../../ts-server/Native/UpcreateCompiler');
+const { CameraFlags, Color, PhysicsFlags, PositionFlags } = require('../../ts-server/Const/Enums');
 
 const toHex = (bytes) => Buffer.from(bytes).toString('hex');
 const state = (group) => Array.from(group.state);

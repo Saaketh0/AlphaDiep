@@ -5,7 +5,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 
 const root = path.join(__dirname, '../..');
-const bin = path.join(root, 'build/cpp/headless_sim');
+const bin = path.join(root, 'cpp-build/cpp/headless_sim');
 
 if (!fs.existsSync(bin)) {
   execFileSync('npm', ['run', 'test:cpp'], { cwd: root, stdio: 'inherit' });

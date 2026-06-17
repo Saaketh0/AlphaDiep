@@ -4,6 +4,24 @@
 
 namespace diepcustom::headless {
 
+struct BarrelRuntimeDefinition {
+  double angle = 0.0;
+  double offset = 0.0;
+  double distance = 0.0;
+  double size = 95.0;
+  double width = 42.0;
+  double delay = 0.0;
+  double reload = 1.0;
+  double recoil = 1.0;
+  double bulletSizeRatio = 1.0;
+  double bulletHealth = 1.0;
+  double bulletDamage = 1.0;
+  double bulletSpeed = 1.0;
+  double bulletScatterRate = 1.0;
+  double bulletLifeLength = 1.0;
+  double bulletAbsorbtionFactor = 1.0;
+};
+
 struct TankRuntimeDefinition {
   bool valid = false;
   int id = -1;
@@ -16,10 +34,12 @@ struct TankRuntimeDefinition {
   double absorbtionFactor = 1.0;
   int sides = 1;
   int barrelCount = 0;
+  std::array<BarrelRuntimeDefinition, 16> barrels{};
 };
 
 inline constexpr int HeadlessTankDefinitionCount = 56;
 inline constexpr int HeadlessTankUpgradeSlots = 6;
+inline constexpr int HeadlessTankMaxBarrels = 16;
 
 inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> kTankRuntimeDefinitions{{
     TankRuntimeDefinition{
@@ -33,7 +53,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,42,0,1,1,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -46,7 +67,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-26,0,95,42,0,1,0.75,1,0.9,0.65,1,1,1,1}, BarrelRuntimeDefinition{0,26,0,95,42,0.5,1,0.75,1,0.9,0.65,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -59,7 +81,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-26,0,80,42,0.5,1,0.5,1,0.7,0.6,1,1,1,1}, BarrelRuntimeDefinition{0,26,0,80,42,0.5,1,0.5,1,0.7,0.6,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,95,42,0,1,0.5,1,0.7,0.6,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -72,7 +95,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{-0.785398,0,0,95,42,0,1,1,1,1,0.7,1,1,1,1}, BarrelRuntimeDefinition{0.785398,0,0,95,42,0,1,1,1,1,0.7,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,95,42,0,1,1,1,1,0.7,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -85,7 +109,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        4
+        4,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{3.141593,0,0,95,42,0,1,1,1,1,0.75,1,1,1,1}, BarrelRuntimeDefinition{-1.570796,0,0,95,42,0,1,1,1,1,0.75,1,1,1,1}, BarrelRuntimeDefinition{1.570796,0,0,95,42,0,1,1,1,1,0.75,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,95,42,0,1,1,1,1,0.75,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -98,7 +123,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        8
+        8,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{-0.785398,0,0,95,42,0.5,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{0.785398,0,0,95,42,0.5,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{-2.356194,0,0,95,42,0.5,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{2.356194,0,0,95,42,0.5,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{3.141593,0,0,95,42,0,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{-1.570796,0,0,95,42,0,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{1.570796,0,0,95,42,0,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,95,42,0,1,1,1,1,0.65,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -111,7 +137,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,110,42,0,1.5,3,1,1,1,1.5,0.3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -124,7 +151,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,42,0,0.5,1,1,1,0.7,1,3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -137,7 +165,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,42,0,1,1,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{3.141593,0,0,80,42,0,1,1,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -150,7 +179,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,42,0,1,0.2,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{3.665191,0,0,80,42,0.5,1,2.5,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{2.617994,0,0,80,42,0.5,1,2.5,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -163,7 +193,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,71.4,0,4,15,1,2,3,0.7,1,1,0.1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -176,7 +207,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{-1.570796,0,0,70,42,0,6,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{1.570796,0,0,70,42,0,6,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -189,7 +221,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        4
+        4,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{-1.570796,0,0,70,42,0,6,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{1.570796,0,0,70,42,0,6,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{0,0,0,70,42,0,6,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{3.141593,0,0,70,42,0,6,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -202,7 +235,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        4
+        4,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-26,0,95,42,0,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{0,26,0,95,42,0.5,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{3.141593,-26,0,95,42,0,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{3.141593,26,0,95,42,0.5,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -215,7 +249,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        5
+        5,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{-0.785398,0,0,80,42,0.66,1,0.7,1,1,0.55,1,1,1,1}, BarrelRuntimeDefinition{0.785398,0,0,80,42,0.66,1,0.7,1,1,0.55,1,1,1,1}, BarrelRuntimeDefinition{-0.392699,0,0,95,42,0.33,1,0.7,1,1,0.55,1,1,1,1}, BarrelRuntimeDefinition{0.392699,0,0,95,42,0.33,1,0.7,1,1,0.55,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,110,42,0,1,0.7,1,1,0.55,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -228,7 +263,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,120,42,0,2,3,1,1,1,1.5,0.3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -241,7 +277,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,75,42,0,1,1,1,300,7,2,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -254,7 +291,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         4,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{-1.570796,0,0,70,42,0,6,1,1,2,0.42,0.72,1,-1,1}, BarrelRuntimeDefinition{1.570796,0,0,70,42,0,6,1,1,2,0.42,0.72,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -267,7 +305,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        6
+        6,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-26,0,95,42,0,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{0,26,0,95,42,0.5,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{2.094395,-26,0,95,42,0,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{2.094395,26,0,95,42,0.5,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{-2.094395,-26,0,95,42,0,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{-2.094395,26,0,95,42,0.5,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -280,7 +319,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,110,42,0,2.5,0.3,0.7,1,0.75,1.4,0.3,1,1}, BarrelRuntimeDefinition{0,0,0,95,56.7,0.2,2.5,0.3,0.7,1,0.75,1.4,0.3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -293,7 +333,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        4
+        4,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-32,0,65,25.2,0.5,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{0,32,0,65,25.2,0.75,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{0,-17,0,85,25.2,0,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{0,17,0,85,25.2,0.25,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -306,7 +347,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,120,42,0,2,3,1,1,1,1.5,0.3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -319,7 +361,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,120,42,0,2,3,1,1,1,1.5,0.3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -332,7 +375,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        5
+        5,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,42,0,1,0.2,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{3.926991,0,0,70,42,0.66,1,0.2,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{2.356194,0,0,70,42,0.66,1,0.2,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{3.665191,0,0,80,42,0.33,1,2.5,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{2.617994,0,0,80,42,0.33,1,2.5,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -345,7 +389,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        5
+        5,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,42,0,1,0.2,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{1.570796,0,0,80,42,0,1.5,1,1,1,0.8,1,1,1,1}, BarrelRuntimeDefinition{-1.570796,0,0,80,42,0,1.5,1,1,1,0.8,1,1,1,1}, BarrelRuntimeDefinition{3.665191,0,0,80,42,0.5,1,2.5,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{2.617994,0,0,80,42,0.5,1,2.5,1,1,0.2,1,1,0.5,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -358,7 +403,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,71.4,0,4,15,1,2,3,0.7,1,1,0.1}, BarrelRuntimeDefinition{3.141593,0,0,70,42,0,6,1,1,1.4,0.7,1,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -371,7 +417,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,70,42,0,3,1,1,2,0.7,0.8,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -384,7 +431,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         0.01,
         16,
-        16
+        16,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0.19635,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{0.589049,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{0.981748,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{1.374447,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{1.767146,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{2.159845,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{2.552544,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{2.945243,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{3.337942,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{3.730641,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{4.12334,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{4.516039,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{4.908739,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{5.301437,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{5.694137,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}, BarrelRuntimeDefinition{6.086836,0,0,60,10.5,0,6,0,1,2,0.7,0.48,1,-1,1}}
     },
     TankRuntimeDefinition{
         true,
@@ -397,7 +445,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,110,42,0,3,0.3,0.7,1,0.75,1.4,0.3,1,1}, BarrelRuntimeDefinition{0,0,0,95,56.7,0.2,3,0.3,0.7,1,0.75,1.4,0.3,1,1}, BarrelRuntimeDefinition{0,0,0,80,71.4,0.4,3,0.3,0.7,1,0.75,1.4,0.3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -410,7 +459,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        2
+        2,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,110,42,0.5,1,0,0.7,1,0.1,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,95,42,0,0.5,1,1,1,0.7,1,3,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{},
     TankRuntimeDefinition{
@@ -424,7 +474,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,60,42,0,1.5,1,0.8,2,1,2,1,8,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -437,7 +488,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-16,0,75,21,0.66,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{0,16,0,75,21,0.33,1,1,1,1,0.5,1,1,1,1}, BarrelRuntimeDefinition{3.141593,0,0,60,54.6,0,3,1,0.8,2,1,2,1,8,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -450,7 +502,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,60,42,0,1.5,1,0.8,2,1,2,1,8,1}, BarrelRuntimeDefinition{2.094395,0,0,70,42,0,6,1,1,1.4,0.7,1,1,-1,1}, BarrelRuntimeDefinition{4.18879,0,0,70,42,0,6,1,1,1.4,0.7,1,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -463,7 +516,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,60,54.6,0,3.3,1,1.28,3.2,1.6,2,1,8,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -476,7 +530,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,60,42,0,1.5,1,0.8,2,1,2,1,3.2,1}, BarrelRuntimeDefinition{2.094395,0,0,60,42,0,1.5,1,0.8,2,1,2,1,3.2,1}, BarrelRuntimeDefinition{4.18879,0,0,60,42,0,1.5,1,0.8,2,1,2,1,3.2,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -489,7 +544,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{},
     TankRuntimeDefinition{
@@ -503,7 +559,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -516,7 +573,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        4
+        4,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-32,0,65,25.2,0.5,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{0,32,0,65,25.2,0.75,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{0,-17,0,85,25.2,0,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{0,17,0,85,25.2,0.25,1,0.2,1,0.45,0.5,1.1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -529,7 +587,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -542,7 +601,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -555,7 +615,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        11
+        11,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{1.308997,0,0,65,29.4,0.833325,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{-1.308997,0,0,65,29.4,0.833325,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{1.047198,0,0,71,29.4,0.666675,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{-1.047198,0,0,71,29.4,0.666675,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{0.785398,0,0,77,29.4,0.5,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{-0.785398,0,0,77,29.4,0.5,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{0.523599,0,0,83,29.4,0.333325,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{-0.523599,0,0,83,29.4,0.333325,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{0.261799,0,0,89,29.4,0.166675,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{-0.261799,0,0,89,29.4,0.166675,2,0.1,1,1,0.6,1,1,1,1}, BarrelRuntimeDefinition{0,0,0,95,42,0,2,0.1,1,1,1,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -568,7 +629,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        5
+        5,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,110,42,0,1,0.2,0.7,1,0.2,1.1,0.3,0.8,1}, BarrelRuntimeDefinition{0,0,0,100,42,0.2,1,0.2,0.7,1,0.2,1.1,0.3,0.8,1}, BarrelRuntimeDefinition{0,0,0,90,42,0.4,1,0.2,0.7,1,0.2,1.1,0.3,0.8,1}, BarrelRuntimeDefinition{0,0,0,80,42,0.6,1,0.2,0.7,1,0.2,1.1,0.3,0.8,1}, BarrelRuntimeDefinition{0,0,0,70,42,0.8,1,0.2,0.7,1,0.2,1.1,0.3,0.8,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -581,7 +643,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,60,42,0,1.5,1,0.8,2,1,2,1,8,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -594,7 +657,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,80,34.99965,0.001,3,0,1,100,10,1,1,1,0.1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -607,7 +671,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        3
+        3,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,-6,0,75,17.50035,0.666,0.3,0,0.6,5,1,1.2,1,1,1}, BarrelRuntimeDefinition{0,6,0,75,17.50035,0.333,0.3,0,0.6,5,1,1.2,1,1,1}, BarrelRuntimeDefinition{0,0,0,80,17.50035,0.001,0.3,0,0.6,5,1,1.2,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -620,7 +685,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        8
+        8,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{0.785398,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{1.570796,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{2.356194,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{3.141593,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{3.926991,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{4.712389,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{5.497787,0,0,60,21,0,1.5,0,0.8,20,3,4,1,3.2,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -633,7 +699,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        4
+        4,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{1.570796,-20,0,75,29.4,0,1,1,0.7,1,0.15,1,1,1,1}, BarrelRuntimeDefinition{4.712389,-20,0,75,29.4,0,1,1,0.7,1,0.15,1,1,1,1}, BarrelRuntimeDefinition{1.570796,20,0,75,29.4,0,1,1,0.7,1,0.15,1,1,1,1}, BarrelRuntimeDefinition{4.712389,20,0,75,29.4,0,1,1,0.7,1,0.15,1,1,1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -646,7 +713,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,95,96.6,0,4,17,1,2,3,0.7,1,1,0.05}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -659,7 +727,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -672,7 +741,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -685,7 +755,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         4,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,70,42,0,3,1,1,4,0.7,0.56,1,-1,1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -698,7 +769,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        0
+        0,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -711,7 +783,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,80,71.4,0,4,3,1,3,1,0.5,1,1.3,0.1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
     TankRuntimeDefinition{
         true,
@@ -724,7 +797,8 @@ inline constexpr std::array<TankRuntimeDefinition, HeadlessTankDefinitionCount> 
         1,
         1,
         1,
-        1
+        1,
+        std::array<BarrelRuntimeDefinition, 16>{BarrelRuntimeDefinition{0,0,0,80,52.5,0,4,3,1,5,1,0.3,1,1,0.1}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}, BarrelRuntimeDefinition{}}
     },
 }};
 

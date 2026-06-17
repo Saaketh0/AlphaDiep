@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from RL_training import DiepCustomParallelEnv
+from rl.env import DiepCustomParallelEnv
 
 
 def main() -> None:

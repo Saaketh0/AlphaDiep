@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const path = require('node:path');
 require(path.join(__dirname, '../../test/helpers/register-ts'));
-const Vector = require('../../src/Physics/Vector').default;
-const PackedEntitySet = require('../../src/Physics/PackedEntitySet').default;
-const HashGrid = require('../../src/Physics/HashGrid').default;
+const Vector = require('../../ts-server/Physics/Vector').default;
+const PackedEntitySet = require('../../ts-server/Physics/PackedEntitySet').default;
+const HashGrid = require('../../ts-server/Physics/HashGrid').default;
 
 const round = (n) => {
   if (Number.isNaN(n)) return 'NaN';

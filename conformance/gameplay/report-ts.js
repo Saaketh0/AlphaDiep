@@ -2,12 +2,12 @@
 const path = require('node:path');
 require(path.join(__dirname, '../../test/helpers/register-ts'));
 
-const EntityManager = require('../../src/Native/Manager').default;
-const LivingEntity = require('../../src/Entity/Live').default;
-const { CameraEntity } = require('../../src/Native/Camera');
-const { Entity } = require('../../src/Native/Entity');
-const { ArenaGroup, ScoreGroup } = require('../../src/Native/FieldGroups');
-const { Color, PhysicsFlags } = require('../../src/Const/Enums');
+const EntityManager = require('../../ts-server/Native/Manager').default;
+const LivingEntity = require('../../ts-server/Entity/Live').default;
+const { CameraEntity } = require('../../ts-server/Native/Camera');
+const { Entity } = require('../../ts-server/Native/Entity');
+const { ArenaGroup, ScoreGroup } = require('../../ts-server/Native/FieldGroups');
+const { Color, PhysicsFlags } = require('../../ts-server/Const/Enums');
 
 function createHeadlessGame() {
   const game = {
@@ -733,7 +733,7 @@ function solidWallProjectileContactScenario() {
 
   return {
     scenario: 'solid-wall-projectile-contact',
-    invariant: 'A projectile-like owned entity touching an enemy solid wall is immediately put into deletion animation without damaging or moving the wall.',
+    invariant: 'A projectile-like owned entity touching an enemy solid wall is immediately put into deletion animation without damaging the wall while preserving deterministic wall knockback evidence.',
     participants: {
       owner: entityRef(owner),
       projectile: entityRef(projectile),

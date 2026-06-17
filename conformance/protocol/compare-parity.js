@@ -4,7 +4,7 @@ const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 
 const root = path.join(__dirname, '../..');
-const exe = path.join(root, 'build/cpp/protocol_report') + (process.platform === 'win32' ? '.exe' : '');
+const exe = path.join(root, 'cpp-build/cpp/protocol_report') + (process.platform === 'win32' ? '.exe' : '');
 
 function runJson(command, args) {
   const output = execFileSync(command, args, { cwd: root, encoding: 'utf8' });

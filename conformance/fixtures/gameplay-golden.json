@@ -4296,7 +4296,7 @@
     },
     {
       "scenario": "solid-wall-projectile-contact",
-      "invariant": "A projectile-like owned entity touching an enemy solid wall is immediately put into deletion animation without damaging or moving the wall.",
+      "invariant": "A projectile-like owned entity touching an enemy solid wall is immediately put into deletion animation without damaging the wall while preserving deterministic wall knockback evidence.",
       "participants": {
         "owner": {
           "id": 0,

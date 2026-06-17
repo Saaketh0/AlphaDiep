@@ -9,7 +9,7 @@ if str(ROOT) not in sys.path:
 
 import numpy as np
 
-from RL_training import COMBAT_GRID_CHANNELS, CombatObservationBuilder, DiepAction, HeadlessSim
+from rl.env import COMBAT_GRID_CHANNELS, CombatObservationBuilder, DiepAction, HeadlessSim
 
 CHANNEL = {name: index for index, name in enumerate(COMBAT_GRID_CHANNELS)}
 PROGRESSION_STAT_LEVELS_START = 5

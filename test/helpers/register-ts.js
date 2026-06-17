@@ -1,5 +1,6 @@
 const fs = require('node:fs');
-const ts = require('typescript');
+const path = require('node:path');
+const ts = require(path.join(__dirname, '../../ts-server/node_modules/typescript'));
 
 require.extensions['.ts'] = function compileTypeScript(module, filename) {
   const source = fs.readFileSync(filename, 'utf8');

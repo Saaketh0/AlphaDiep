@@ -3,7 +3,7 @@ const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 
 const root = path.join(__dirname, '../..');
-const bin = path.join(root, 'build/cpp/headless_sim');
+const bin = path.join(root, 'cpp-build/cpp/headless_sim');
 
 function positiveIntegerFromEnv(name, defaultValue) {
   const raw = process.env[name];

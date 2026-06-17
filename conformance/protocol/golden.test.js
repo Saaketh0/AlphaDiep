@@ -3,8 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
 require('../../test/helpers/register-ts');
-const Reader = require('../../src/Coder/Reader').default;
-const Writer = require('../../src/Coder/Writer').default;
+const Reader = require('../../ts-server/Coder/Reader').default;
+const Writer = require('../../ts-server/Coder/Writer').default;
 
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, '../fixtures/protocol-golden.json'), 'utf8'));
 const byName = new Map(fixture.cases.map((entry) => [entry.name, entry.hex]));

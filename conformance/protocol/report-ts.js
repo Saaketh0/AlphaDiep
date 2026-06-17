@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const path = require('node:path');
 require(path.join(__dirname, '../../test/helpers/register-ts'));
-const Reader = require('../../src/Coder/Reader').default;
-const Writer = require('../../src/Coder/Writer').default;
+const Reader = require('../../ts-server/Coder/Reader').default;
+const Writer = require('../../ts-server/Coder/Writer').default;
 
 const toHex = (bytes) => Buffer.from(bytes).toString('hex');
 const fromHex = (hex) => Uint8Array.from(Buffer.from(hex, 'hex'));

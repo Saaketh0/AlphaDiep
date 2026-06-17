@@ -1,0 +1,19 @@
+{
+  "score_delta": 1.0,
+  "raw": 0.0,
+  "step": -0.001,
+  "death": -1.0,
+  "health_delta": 0.0,
+  "damage_taken": -0.01,
+  "enemy_kills": 2.0,
+  "farm_kills": 0.05,
+  "level_delta": 0.02,
+  "level_milestone": 0.5,
+  "edge_proximity": -0.01,
+  "movement_speed": 0.005,
+  "retreat": 0.03,
+  "aim_accuracy": 0.05,
+  "enemy_damage_dealt": 0.02,
+  "alive": 0.0,
+  "truncation": 0.0
+}

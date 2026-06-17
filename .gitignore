@@ -1,14 +1,20 @@
 lib/
 node_modules/
 prev/
-build/
+cpp-build/*
+!cpp-build/README.md
 .DS_Store
 ext/
 .vscode/
 package/
-client/public/
+ts-client/public/
 replit.nix
 .grepai/
+.omx/
+
+# TypeScript server package outputs
+ts-server/lib/
+ts-server/node_modules/
 
 # --- Python / local dev ---
 .venv/
@@ -18,17 +24,19 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
-# --- RL training artifacts (local SSD; see league_initialization/paths.py) ---
-# League safetensors (~GB), Redis AOF/RDB, RLlib Tune checkpoints, W&B runs.
-training_data/
+# --- RL training artifacts (local SSD; see rl/runtime/league_initialization/paths.py) ---
+# League safetensors (~GB), Redis AOF/RDB, RLlib Tune checkpoints, W&B runs,
+# and env-runner probe cache (training_data/env_runner_capacity.json).
+training_data/*
+!training_data/README.md
 
-# Env-runner probe cache written by resource_compute/env_runner_capacity.py
-RL_testing/resource_compute/training_data/
+# Legacy Redis bind mount (pre training_data/redis-server/)
+redis_data/
 
 # Observability eval outputs (legacy path; primary runs live under training_data/W&B/)
-observability/runs/**
-!observability/runs/.gitkeep
-!observability/runs/benchmarks.md
+rl/observability/runs/**
+!rl/observability/runs/.gitkeep
+!rl/observability/runs/benchmarks.md
 
 # W&B scratch dirs if created inside the repo
 wandb/

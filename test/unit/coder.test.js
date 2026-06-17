@@ -1,8 +1,8 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 require('../helpers/register-ts');
-const Reader = require('../../src/Coder/Reader').default;
-const Writer = require('../../src/Coder/Writer').default;
+const Reader = require('../../ts-server/Coder/Reader').default;
+const Writer = require('../../ts-server/Coder/Writer').default;
 
 function roundTrip(writeValue, readValue) {
   const writer = new Writer();

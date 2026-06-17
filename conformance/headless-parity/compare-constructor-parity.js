@@ -4,12 +4,12 @@ const { execFileSync } = require('node:child_process');
 const path = require('node:path');
 
 require('../..//test/helpers/register-ts');
-const { Tank, Color } = require('../../src/Const/Enums');
-const TankDefinitions = require('../../src/Const/TankDefinitions');
+const { Tank, Color } = require('../../ts-server/Const/Enums');
+const TankDefinitions = require('../../ts-server/Const/TankDefinitions');
 const { SplitMix64Reference, withSeededRandom } = require('./rng-reference');
 
 const root = path.join(__dirname, '../..');
-const bin = path.join(root, 'build/cpp/headless_sim') + (process.platform === 'win32' ? '.exe' : '');
+const bin = path.join(root, 'cpp-build/cpp/headless_sim') + (process.platform === 'win32' ? '.exe' : '');
 const round = (value) => Math.round(value * 1e6) / 1e6;
 const snapshot = (args) => JSON.parse(execFileSync(bin, [...args, '--snapshot-json', '--no-report-json'], { cwd: root, encoding: 'utf8' }));
 const byKind = (snap, kind) => snap.entities.filter((entity) => entity.kind === kind);

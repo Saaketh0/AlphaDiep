@@ -236,9 +236,9 @@ int main() {
   assert(deathSumA == 4.0);
   assert(deathSumB == 0.0);
 
-  assertTrainingScenario("training-ffa-easy", 3200.0, 240);
-  assertTrainingScenario("training-ffa-medium", 4800.0, 400);
-  assertTrainingScenario("training-ffa-hard", 6400.0, 600);
+  assertTrainingScenario("training-ffa-easy", 3200.0, 60);
+  assertTrainingScenario("training-ffa-medium", 4800.0, 100);
+  assertTrainingScenario("training-ffa-hard", 6400.0, 150);
 
   grid.reset(123);
   std::fill(episodeStats.begin(), episodeStats.end(), -1.0);

@@ -90,10 +90,11 @@ int main(int argc, char** argv) {
       else if (auto value = valueAfterEquals(arg, "scenario"); !value.empty()) config.scenario = value;
       else throw std::invalid_argument("unknown argument: " + arg);
     }
-    config.maxTicks = std::max(1, ticks);
+    const int runTicks = std::max(0, ticks);
+    config.maxTicks = std::max(1, runTicks);
     Simulation sim(config);
     const auto start = std::chrono::steady_clock::now();
-    for (int tick = 0; tick < config.maxTicks; ++tick) {
+    for (int tick = 0; tick < runTicks; ++tick) {
       sim.step(scriptedActions(sim, tick));
       if (observeAll) {
         const int count = sim.combatGridFloatCount();

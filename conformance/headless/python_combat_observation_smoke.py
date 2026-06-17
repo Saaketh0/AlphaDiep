@@ -9,7 +9,7 @@ if str(ROOT) not in sys.path:
 
 import numpy as np
 
-from RL_training import COMBAT_GRID_CHANNELS, COMBAT_SELF_FIELDS, CombatObservationBuilder, DiepCustomParallelEnv
+from rl.env import COMBAT_GRID_CHANNELS, COMBAT_SELF_FIELDS, CombatObservationBuilder, DiepCustomParallelEnv
 
 
 CHANNEL = {name: index for index, name in enumerate(COMBAT_GRID_CHANNELS)}

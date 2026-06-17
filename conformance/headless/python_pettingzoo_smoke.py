@@ -1,8 +1,8 @@
 from python.agents import AgentProfile, AgentRoster
 from python.pettingzoo_env import DiepCustomParallelEnv, REWARD_FIELDS, RewardConfig, make_reward_config
-from RL_training.auto_upgrade import preset_auto_upgrade_policy
-from RL_testing.rewards import BASIC_REWARD_CONFIG, training_env_config
-from RL_training.rewards import RewardComponentNormalizer, _level_milestones_crossed, _ratio_delta, _retreat_from_values, weighted_rewards
+from rl.env.auto_upgrade import preset_auto_upgrade_policy
+from rl.runtime.rewards import BASIC_REWARD_CONFIG, training_env_config
+from rl.env.rewards import RewardComponentNormalizer, _level_milestones_crossed, _ratio_delta, _retreat_from_values, weighted_rewards
 
 
 def assert_default_builds_prioritize_combat_stats():
@@ -13,11 +13,11 @@ def assert_default_builds_prioritize_combat_stats():
             'legal_stat_upgrades': [1] * 8,
             'legal_tank_upgrades': [0] * 6,
         }
-        assert policy.stat_choice(progression) == 2
-        progression['stat_levels'][2] = 7
-        assert policy.stat_choice(progression) == 1
-        progression['stat_levels'][1] = 7
-        assert policy.stat_choice(progression) == 3
+        assert policy.stat_choice(progression) == 5
+        progression['stat_levels'][5] = 7
+        assert policy.stat_choice(progression) == 6
+        progression['stat_levels'][6] = 7
+        assert policy.stat_choice(progression) == 4
 
 
 def main():
@@ -135,13 +135,14 @@ def main():
             reward_config={'alive': 0.25, 'death': -1.0, 'truncation': -0.5, 'step': -0.01},
         )
         try:
-            configured.reset(seed=123)
+            _reset_obs, reset_infos = configured.reset(seed=123)
             assert configured.set_reward_config(alive=0.25, death=-1.0, truncation=-0.5, step=-0.01) == make_reward_config(alive=0.25, death=-1.0, truncation=-0.5, step=-0.01)
+            assert reset_infos['agent_0']['reward_config'] == make_reward_config(alive=0.25, death=-1.0, truncation=-0.5, step=-0.01)
             _obs, configured_rewards, _terms, truncs, infos = configured.step({})
             assert configured_rewards == {'agent_0': -0.26, 'agent_1': -0.26}
             assert infos['agent_0']['reward_components']['alive'] == 1.0
             assert infos['agent_0']['reward_components']['truncation'] == 1.0
-            assert infos['agent_0']['reward_config'] == make_reward_config(alive=0.25, death=-1.0, truncation=-0.5, step=-0.01)
+            assert 'reward_config' not in infos['agent_0']
             assert all(truncs.values())
         finally:
             configured.close()

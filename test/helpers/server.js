@@ -49,8 +49,9 @@ function waitForOutput(child, matcher, timeoutMs = 8_000) {
 async function startServer(options = {}) {
   const port = options.port || await getFreePort();
   const root = path.resolve(__dirname, '../..');
-  const child = spawn(process.execPath, ['index.js'], {
-    cwd: root,
+  const serverRoot = path.join(root, 'ts-server');
+  const child = spawn(process.execPath, ['lib/index.js'], {
+    cwd: serverRoot,
     env: {
       ...process.env,
       PORT: String(port),

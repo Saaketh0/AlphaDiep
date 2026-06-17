@@ -378,9 +378,9 @@ void Simulation::initializeWorld() {
 }
 
 Simulation::TrainingScenarioConfig Simulation::trainingScenarioConfig() const {
-  if (config_.scenario == "training-ffa-easy") return TrainingScenarioConfig{true, 3200.0, 240};
-  if (config_.scenario == "training-ffa-medium") return TrainingScenarioConfig{true, 4800.0, 400};
-  if (config_.scenario == "training-ffa-hard") return TrainingScenarioConfig{true, 6400.0, 600};
+  if (config_.scenario == "training-ffa-easy") return TrainingScenarioConfig{true, 3200.0, 60};
+  if (config_.scenario == "training-ffa-medium") return TrainingScenarioConfig{true, 4800.0, 100};
+  if (config_.scenario == "training-ffa-hard") return TrainingScenarioConfig{true, 6400.0, 150};
   return TrainingScenarioConfig{};
 }
 
@@ -623,7 +623,6 @@ std::string Simulation::randomTrainingShapeKind(const TrainingScenarioConfig&) {
   if (zoneRoll < 0.20) return "crasher";
   const double typeRoll = rng_.nextDouble01();
   if (typeRoll < 0.04) return "pentagon";
-  if (typeRoll < 0.20) return "triangle";
   return "square";
 }
 
@@ -940,7 +939,31 @@ void Simulation::applyTankDefinition(Entity& entity) {
   if (!definition) return;
   entity.absorbtionFactor = definition->absorbtionFactor;
   entity.sides = definition->sides;
-  entity.barrels.assign(static_cast<std::size_t>(std::max(0, definition->barrelCount)), BarrelSnapshot{});
+  entity.barrels.clear();
+  entity.barrels.reserve(static_cast<std::size_t>(std::max(0, definition->barrelCount)));
+  for (int barrelIndex = 0; barrelIndex < definition->barrelCount; ++barrelIndex) {
+    const auto& runtimeBarrel = definition->barrels[static_cast<std::size_t>(barrelIndex)];
+    entity.barrels.push_back(BarrelSnapshot{
+        runtimeBarrel.angle,
+        runtimeBarrel.offset,
+        runtimeBarrel.distance,
+        runtimeBarrel.size,
+        runtimeBarrel.width,
+        runtimeBarrel.delay,
+        runtimeBarrel.reload,
+        runtimeBarrel.recoil,
+        false,
+        0.0,
+        "bullet",
+        runtimeBarrel.bulletSizeRatio,
+        runtimeBarrel.bulletHealth,
+        runtimeBarrel.bulletDamage,
+        runtimeBarrel.bulletSpeed,
+        runtimeBarrel.bulletScatterRate,
+        runtimeBarrel.bulletLifeLength,
+        runtimeBarrel.bulletAbsorbtionFactor,
+    });
+  }
   for (int statIndex = 0; statIndex < HeadlessStatCount; ++statIndex) {
     const int maxAllowed = definition->statCaps[static_cast<std::size_t>(statIndex)];
     if (entity.statLevels[static_cast<std::size_t>(statIndex)] > maxAllowed) {
@@ -994,35 +1017,39 @@ bool Simulation::tryApplyTankUpgradeSlot(Entity& entity, int slotIndex) {
 
 void Simulation::fireProjectile(Entity& owner) {
   if (owner.barrels.empty()) return;
-  const DerivedCombatStats derived = derivedCombatStatsFor(owner.currentTankId, owner.statLevels);
+  const auto& barrel = owner.barrels.front();
   Entity projectile;
   projectile.id = nextId_++;
   projectile.hash = nextHash_++;
   projectile.kind = "projectile";
   projectile.ownerId = owner.id;
   projectile.teamId = owner.teamId;
-  projectile.x = owner.x + std::cos(owner.angle) * 95.0;
-  projectile.y = owner.y + std::sin(owner.angle) * 95.0;
-  const double scatterAngle = (Pi / 180.0) * 1.0 * (rng_.nextDouble01() - 0.5) * 10.0;
+  const double shootAngle = owner.angle + barrel.angle;
+  projectile.x = owner.x + std::cos(shootAngle) * barrel.size - std::sin(shootAngle) * barrel.offset + std::cos(shootAngle) * barrel.distance;
+  projectile.y = owner.y + std::sin(shootAngle) * barrel.size + std::cos(shootAngle) * barrel.offset + std::sin(shootAngle) * barrel.distance;
+  const double scatterAngle = (Pi / 180.0) * barrel.bulletScatterRate * (rng_.nextDouble01() - 0.5) * 10.0;
   projectile.scatterAngle = scatterAngle;
-  projectile.angle = owner.angle + scatterAngle;
+  projectile.angle = shootAngle + scatterAngle;
+  const double bulletSpeedStat = static_cast<double>(owner.statLevels[3]);
   const double bulletPenStat = static_cast<double>(owner.statLevels[4]);
-  projectile.health = projectile.maxHealth = 2.0 * (1.0 + 0.12 * bulletPenStat);
-  projectile.damagePerTick = derived.bulletDamage;
+  const double bulletDamageStat = static_cast<double>(owner.statLevels[5]);
+  const double bulletAccel = (20.0 + bulletSpeedStat * 3.0) * barrel.bulletSpeed;
+  projectile.health = projectile.maxHealth = (1.5 * bulletPenStat + 2.0) * barrel.bulletHealth;
+  projectile.damagePerTick = (7.0 + bulletDamageStat * 3.0) * barrel.bulletDamage;
   projectile.minDamageMultiplier = 0.25;
   projectile.maxDamageMultiplier = 1;
-  projectile.size = projectile.width = 18.0 + std::min(10.0, static_cast<double>(owner.statLevels[5]));
-  projectile.pushFactor = 7.0 / 3.0;
-  projectile.absorbtionFactor = 1;
+  projectile.size = projectile.width = (barrel.width / 2.0) * barrel.bulletSizeRatio;
+  projectile.pushFactor = ((7.0 / 3.0) + bulletDamageStat) * barrel.bulletDamage * barrel.bulletAbsorbtionFactor;
+  projectile.absorbtionFactor = barrel.bulletAbsorbtionFactor;
   projectile.styleColor = ColorTank;
   projectile.projectileMotion = true;
   projectile.spawnTick = tick_;
-  projectile.lifeLength = std::max(30, static_cast<int>(std::round(derived.bulletRange / std::max(1.0, derived.bulletSpeed))));
+  projectile.lifeLength = std::max(1, static_cast<int>(std::round(barrel.bulletLifeLength * 75.0)));
   projectile.movementAngle = projectile.angle;
-  projectile.baseAccel = std::max(6.0, derived.bulletSpeed * 0.4);
-  projectile.baseSpeed = std::max(10.0, derived.bulletSpeed - rng_.nextDouble01());
-  owner.vx += std::cos(projectile.angle + Pi) * 2.0;
-  owner.vy += std::sin(projectile.angle + Pi) * 2.0;
+  projectile.baseAccel = bulletAccel;
+  projectile.baseSpeed = bulletAccel + 30.0 - rng_.nextDouble01() * barrel.bulletScatterRate;
+  owner.vx += std::cos(projectile.angle + Pi) * barrel.recoil * 2.0;
+  owner.vy += std::sin(projectile.angle + Pi) * barrel.recoil * 2.0;
   projectile.vx = owner.vx;
   projectile.vy = owner.vy;
   refreshVelocity(projectile.vx, projectile.vy, projectile.velocityMagnitude, projectile.velocityAngle);

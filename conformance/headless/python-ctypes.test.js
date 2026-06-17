@@ -4,8 +4,8 @@ const path = require('node:path');
 const fs = require('node:fs');
 
 const root = path.join(__dirname, '../..');
-const dylib = path.join(root, 'build/cpp/libdiepcustom_headless_c.dylib');
-const so = path.join(root, 'build/cpp/libdiepcustom_headless_c.so');
+const dylib = path.join(root, 'cpp-build/cpp/libdiepcustom_headless_c.dylib');
+const so = path.join(root, 'cpp-build/cpp/libdiepcustom_headless_c.so');
 
 if (!fs.existsSync(dylib) && !fs.existsSync(so)) {
   execFileSync('npm', ['run', 'test:cpp'], { cwd: root, stdio: 'inherit' });

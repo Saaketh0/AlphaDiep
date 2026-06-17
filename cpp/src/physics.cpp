@@ -109,14 +109,10 @@ void HashGrid::postTick(std::uint32_t) {
 
 std::int32_t HashGrid::cellCoord(double value) const { return static_cast<std::int32_t>(value) >> CellShift; }
 std::size_t HashGrid::cellKey(std::int32_t x, std::int32_t y) const {
-    const auto encode = [](std::int32_t value) {
-        const auto wide = static_cast<std::int64_t>(value);
-        return static_cast<std::size_t>(wide < 0 ? (-wide * 2) - 1 : wide * 2);
-    };
-    const auto encodedX = encode(x);
-    const auto encodedY = encode(y);
-    const auto sum = encodedX + encodedY;
-    return ((sum * (sum + 1u)) / 2u) + encodedY;
+    const auto wideX = static_cast<std::int64_t>(x);
+    const auto wideY = static_cast<std::int64_t>(y);
+    const auto sum = wideX + (wideY * static_cast<std::int64_t>(hashMul_));
+    return static_cast<std::size_t>(sum < 0 ? -sum : sum);
 }
 const Entity* HashGrid::entityById(std::uint32_t id) const { return id < entities_->size() ? &(*entities_)[id] : nullptr; }
 void HashGrid::requireUnlocked(const std::string& method) const { if (isLocked_) throw std::runtime_error("HashGrid is locked! Cannot " + method); }

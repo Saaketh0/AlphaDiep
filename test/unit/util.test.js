@@ -2,11 +2,11 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 require('../helpers/register-ts');
 
-const Vector = require('../../src/Physics/Vector').default;
-const { AIState } = require('../../src/Entity/AI');
-const { applyIdleSpinOrTrackTarget } = require('../../src/Entity/Boss/aim');
-const { getAutoSizedArenaDimension } = require('../../src/Gamemodes/Misc/common');
-const { removeFast, constrain, normalizeAngle, PI2 } = require('../../src/util');
+const Vector = require('../../ts-server/Physics/Vector').default;
+const { AIState } = require('../../ts-server/Entity/AI');
+const { applyIdleSpinOrTrackTarget } = require('../../ts-server/Entity/Boss/aim');
+const { getAutoSizedArenaDimension } = require('../../ts-server/Gamemodes/Misc/common');
+const { removeFast, constrain, normalizeAngle, PI2 } = require('../../ts-server/util');
 
 test('removeFast removes the indexed element without preserving order', () => {
   const values = ['a', 'b', 'c', 'd'];
