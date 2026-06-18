@@ -109,7 +109,7 @@ wall_obs = builder.build(snapshot=wall_snapshot, agent_id=1, state_row=np.asarra
 assert wall_obs['grid_obs'][CHANNEL['wall'], CENTER, CENTER + 1] == 1.0
 assert wall_obs['prev_action_obs'].tolist() == [0.0, 0.0, 0.0, 0.0, 0.0]
 
-combat_env = DiepCustomParallelEnv(seed=123, agents=1, max_ticks=4, scenario='upgrade-ready', observation_mode='combat', include_snapshot_info=False)
+combat_env = DiepCustomParallelEnv(seed=123, agents=1, max_ticks=4, scenario='upgrade-ready', include_snapshot_info=False)
 try:
     observations, infos = combat_env.reset(seed=123)
     assert infos['agent_0']['agent_id'] == 0

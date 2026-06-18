@@ -46,7 +46,6 @@ env = DiepCustomParallelEnv(
     seed=1,
     agents=2,
     max_ticks=1000,
-    observation_mode='combat',
     include_snapshot_info=False,
     reward_config={
         'score_delta': 1.0,
@@ -118,7 +117,7 @@ Debug components with: `infos[agent]['reward_components']`.
 
 ## Observation Mode
 
-Only `observation_mode='combat'` is supported.
+Only the combat observation mode is supported.
 
 It returns the policy-facing observation dictionary used by the RLlib combat stack:
 
@@ -160,7 +159,6 @@ Training data persists under `training_data/` (league weights and metadata in `r
 
 ```python
 DiepCustomParallelEnv(
-    observation_mode='combat',
     include_snapshot_info=False,
     fast_reward_state=True,  # used by rl/runtime/training_runtime.py DIEP_ENV_CONFIG
     reward_config={'score_delta': 1.0, 'alive': 0.01, 'death': -1.0},
@@ -263,7 +261,7 @@ The field order matches `headless.py::EPISODE_STATS_FIELDS` and is consumed by `
 ## Practical Workflow
 
 1. Import `DiepCustomParallelEnv` from `rl.env`.
-2. Start with `observation_mode='combat'`.
+2. Use the combat observation mode.
 3. Tune `reward_config` in your training script.
 4. Inspect `reward_components` when debugging.
 5. Run smoke/API tests before long training runs.

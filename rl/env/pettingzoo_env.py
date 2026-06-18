@@ -120,7 +120,6 @@ class DiepCustomParallelEnv(ParallelEnv):
         reward_config=None,
         raw_rewards=False,
         render_mode=None,
-        observation_mode='combat',
         fast_reward_state=False,
         include_snapshot_info=True,
         normalize_reward_components=False,
@@ -132,8 +131,6 @@ class DiepCustomParallelEnv(ParallelEnv):
     ):
         if agents <= 0:
             raise ValueError('agents must be positive')
-        if observation_mode != 'combat':
-            raise ValueError("observation_mode must be 'combat'")
 
         self.seed_value = seed
         self.agent_count = agents
@@ -143,7 +140,6 @@ class DiepCustomParallelEnv(ParallelEnv):
         self.reward_config = make_reward_config(reward_config) if reward_config is not None else None
         self.raw_rewards = raw_rewards
         self.render_mode = render_mode
-        self.observation_mode = 'combat'
         self.fast_reward_state = bool(fast_reward_state)
         self.include_snapshot_info = include_snapshot_info
         self.include_reward_components_in_info = bool(include_reward_components_in_info)

@@ -151,7 +151,6 @@ def main():
             agents=2,
             max_ticks=1,
             scenario='rl-grid-smoke',
-            observation_mode='combat',
             fast_reward_state=True,
             include_snapshot_info=False,
             reward_config={'alive': 0.25, 'truncation': -0.5, 'step': -0.01},
@@ -175,7 +174,6 @@ def main():
             agents=2,
             max_ticks=1,
             scenario='rl-grid-smoke',
-            observation_mode='combat',
             fast_reward_state=True,
             include_snapshot_info=False,
             reward_config=BASIC_REWARD_CONFIG,
@@ -198,7 +196,6 @@ def main():
             agents=2,
             max_ticks=1,
             scenario='rl-grid-smoke',
-            observation_mode='combat',
             fast_reward_state=True,
             include_snapshot_info=False,
             reward_config=BASIC_REWARD_CONFIG,
@@ -220,7 +217,6 @@ def main():
             agents=1,
             max_ticks=4,
             scenario='upgrade-ready',
-            observation_mode='combat',
             include_snapshot_info=False,
         )
         try:
@@ -241,7 +237,6 @@ def main():
             agents=4,
             max_ticks=4,
             scenario='upgrade-ready',
-            observation_mode='combat',
             include_snapshot_info=False,
             combat_builds=('predator', 'pentashot', 'fighter', 'annihilator'),
         )
@@ -271,7 +266,6 @@ def main():
             agents=4,
             max_ticks=200,
             scenario='dense-collision',
-            observation_mode='combat',
             include_snapshot_info=False,
         )
         try:
@@ -284,14 +278,7 @@ def main():
                 assert set(observations[agent]) == {'grid_obs', 'self_obs', 'prev_action_obs', 'tank_type_obs'}
                 assert observations[agent]['grid_obs'].shape == (18, 21, 21)
                 assert observations[agent]['self_obs'].shape == (27,)
-                assert observations[agent]['prev_action_obs'].shape == (5,)
-            for legacy_mode in ('grid', 'state', 'grid_hud'):
-                try:
-                    DiepCustomParallelEnv(observation_mode=legacy_mode)
-                except ValueError:
-                    pass
-                else:
-                    raise AssertionError(f'expected {legacy_mode!r} to be rejected')
+                assert observations[agent]['prev_action_obs'].shape == (5)
         finally:
             terminated.close()
         assert make_reward_config(RewardConfig(raw=1.0), step=-0.1) == RewardConfig(raw=1.0, step=-0.1)

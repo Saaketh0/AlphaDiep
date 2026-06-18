@@ -8,7 +8,6 @@ def main():
         agents=2,
         max_ticks=8,
         scenario='rl-grid-smoke',
-        observation_mode='combat',
         include_snapshot_info=False,
     )
     try:
